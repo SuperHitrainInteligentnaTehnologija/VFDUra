@@ -1,0 +1,31 @@
+Added Component: Designator=D?(DO-214AA_Unidirectional)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.we-online.de"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://katalog.we-online.de/pbs/datasheet/824520151.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created by"; Value = "Baojun Chen"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created Date"; Value = "Nov.2015"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "partNo"; Value = "824520151"; VariantName = "[No Variations]"
+Added Component: Designator=J?(694106301002)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.we-online.de"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://katalog.we-online.com/em/datasheet/6941xx301002.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Opening Diameter"; Value = "6.4 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "694106301002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Plug OD"; Value = "5.5 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published Date"; Value = "September 2017"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Rated Current"; Value = "5 A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Withstanding Voltage"; Value = "500 VAC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Working Voltage"; Value = "24 VAC"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+12 Pin=D?-1
+Added Pin To Net: NetName=GND Pin=D?-2
+Added Pin To Net: NetName=+12 Pin=J?-1
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-3
+Added Member To Class: ClassName=VFD Ura Controll Member=Component D? Unidirectional, 600 W, 15 VDC
+Added Member To Class: ClassName=VFD Ura Controll Member=Component J? 694106301002

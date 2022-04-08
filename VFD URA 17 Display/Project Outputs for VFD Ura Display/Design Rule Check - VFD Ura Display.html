@@ -1,0 +1,534 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD18\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10.9.2018</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">19:29:33</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc" class="file"><acronym title="D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc">D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">66</td></tr>
+</table>
+</td>
+</table><a name="IDV0ZJWOZOFVCHJ2R5SVDKWQPMNP451VKTE1221JDKKHG3BRGI1R4F"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSNDGM2LEKXVECILHPACTF3DM0KYM3DPQ02YFNMMAKMHVOGDBYAKO">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5HOZ1PPTK0ASJYI1I0FDUWLRAIYJHLXHERG5PMPF4FOVK2GMSEUP">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRW5JDTCAWB0RJYXSRCITNIFX2FVKWFHCMP2LDOLN4TII0KMCFMGL">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLKSZCOZBMSYDICZCPHEEJVDCTDRJRPSWO11G3PKFKMWOGWDOZPVN">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUG1H5UWVJE1LLCPFXIK4LVI0ACLYJCAYU0VKCBDRAWJZL4DPK1DN">Width Constraint (Min=0.254mm) (Max=5mm) (Preferred=0.35mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5NCNGKPFVH32IYBJY5I1QFTZHHGIHZLGIWJXHGBFX53V0HFRXASH">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWS3C0412OHYKGIGLTKXCT3B13JSSJSQG35GBHGEDJGSCYHDQXJED">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYKVW2CA5EM3KMYTIGHNL1JPM2HQFVIDY2DHNCES13GU3ZVVJOUJ">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDS4RINYUXWYS4KXM4KR2T5CDOKO5YNX3WW03JRZLIY1ZIMREAJJND">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">26</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDB3HLZLPEFMERE2DD121LLMOBYJEM0PGTARL4NPKZIDL5ZG4KIJSP">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">36</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEP5GWJICPAY2EZMWCHRAKIDSML3WB5S4NNVBA4LLA5WUTCSIMJPO">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1ZE0BMVPM4LYKIPUCA54G5NVNGUFFLRDBAB5LUDNYYSJ1Q2R1I2N">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID03LROK23LIB1PPKCX2BPKYIOXNA5FPJPZHXHVVF4FGNVU3GJZJ">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">66</td>
+</tr>
+</table><br><a name="IDWS3C0412OHYKGIGLTKXCT3B13JSSJSQG35GBHGEDJGSCYHDQXJED"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1087.958mil|Location2.X=1227.003mil|Location1.Y=2741.501mil|Location2.Y=2880.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1087.958mil|Location2.X=1227.003mil|Location1.Y=2741.501mil|Location2.Y=2880.546mil|Absolute=True">Hole Size Constraint: (3.5mm &gt; 2.54mm) Pad MH1-1(4mm,46mm) on Multi-Layer Actual Hole Size = 3.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4710.005mil|Location2.X=4849.05mil|Location1.Y=2741.501mil|Location2.Y=2880.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4710.005mil|Location2.X=4849.05mil|Location1.Y=2741.501mil|Location2.Y=2880.546mil|Absolute=True">Hole Size Constraint: (3.5mm &gt; 2.54mm) Pad MH2-1(96mm,46mm) on Multi-Layer Actual Hole Size = 3.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1087.958mil|Location2.X=1227.003mil|Location1.Y=1087.958mil|Location2.Y=1227.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1087.958mil|Location2.X=1227.003mil|Location1.Y=1087.958mil|Location2.Y=1227.003mil|Absolute=True">Hole Size Constraint: (3.5mm &gt; 2.54mm) Pad MH3-1(4mm,4mm) on Multi-Layer Actual Hole Size = 3.5mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4710.005mil|Location2.X=4849.05mil|Location1.Y=1087.958mil|Location2.Y=1227.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4710.005mil|Location2.X=4849.05mil|Location1.Y=1087.958mil|Location2.Y=1227.003mil|Absolute=True">Hole Size Constraint: (3.5mm &gt; 2.54mm) Pad MH4-1(96mm,4mm) on Multi-Layer Actual Hole Size = 3.5mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDS4RINYUXWYS4KXM4KR2T5CDOKO5YNX3WW03JRZLIY1ZIMREAJJND"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1447.525mil|Location2.Y=1458.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1447.525mil|Location2.Y=1458.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-1(38.45mm,11.827mm) on Bottom Layer And Pad U2-2(38.45mm,11.192mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1222.525mil|Location2.Y=1233.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1222.525mil|Location2.Y=1233.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-10(38.45mm,6.112mm) on Bottom Layer And Pad U2-11(38.45mm,5.477mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1247.525mil|Location2.Y=1258.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1247.525mil|Location2.Y=1258.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-10(38.45mm,6.112mm) on Bottom Layer And Pad U2-9(38.45mm,6.747mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1197.525mil|Location2.Y=1208.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1197.525mil|Location2.Y=1208.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-11(38.45mm,5.477mm) on Bottom Layer And Pad U2-12(38.45mm,4.842mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1172.525mil|Location2.Y=1183.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1172.525mil|Location2.Y=1183.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-12(38.45mm,4.842mm) on Bottom Layer And Pad U2-13(38.45mm,4.207mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1147.525mil|Location2.Y=1158.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1147.525mil|Location2.Y=1158.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-13(38.45mm,4.207mm) on Bottom Layer And Pad U2-14(38.45mm,3.572mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1147.525mil|Location2.Y=1158.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1147.525mil|Location2.Y=1158.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-15(32.35mm,3.572mm) on Bottom Layer And Pad U2-16(32.35mm,4.207mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1172.525mil|Location2.Y=1183.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1172.525mil|Location2.Y=1183.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-16(32.35mm,4.207mm) on Bottom Layer And Pad U2-17(32.35mm,4.842mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1197.525mil|Location2.Y=1208.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1197.525mil|Location2.Y=1208.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-17(32.35mm,4.842mm) on Bottom Layer And Pad U2-18(32.35mm,5.477mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1222.525mil|Location2.Y=1233.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1222.525mil|Location2.Y=1233.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-18(32.35mm,5.477mm) on Bottom Layer And Pad U2-19(32.35mm,6.112mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1247.525mil|Location2.Y=1258.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1247.525mil|Location2.Y=1258.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-19(32.35mm,6.112mm) on Bottom Layer And Pad U2-20(32.35mm,6.747mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1422.525mil|Location2.Y=1433.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1422.525mil|Location2.Y=1433.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-2(38.45mm,11.192mm) on Bottom Layer And Pad U2-3(38.45mm,10.557mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1272.525mil|Location2.Y=1283.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1272.525mil|Location2.Y=1283.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-20(32.35mm,6.747mm) on Bottom Layer And Pad U2-21(32.35mm,7.382mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1297.525mil|Location2.Y=1308.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1297.525mil|Location2.Y=1308.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-21(32.35mm,7.382mm) on Bottom Layer And Pad U2-22(32.35mm,8.017mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1322.525mil|Location2.Y=1333.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1322.525mil|Location2.Y=1333.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-22(32.35mm,8.017mm) on Bottom Layer And Pad U2-23(32.35mm,8.652mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1347.525mil|Location2.Y=1358.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1347.525mil|Location2.Y=1358.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-23(32.35mm,8.652mm) on Bottom Layer And Pad U2-24(32.35mm,9.287mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1372.525mil|Location2.Y=1383.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1372.525mil|Location2.Y=1383.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-24(32.35mm,9.287mm) on Bottom Layer And Pad U2-25(32.35mm,9.922mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1397.525mil|Location2.Y=1408.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1397.525mil|Location2.Y=1408.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-25(32.35mm,9.922mm) on Bottom Layer And Pad U2-26(32.35mm,10.557mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1422.525mil|Location2.Y=1433.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1422.525mil|Location2.Y=1433.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-26(32.35mm,10.557mm) on Bottom Layer And Pad U2-27(32.35mm,11.192mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1447.525mil|Location2.Y=1458.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.265mil|Location2.X=2262.515mil|Location1.Y=1447.525mil|Location2.Y=1458.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-27(32.35mm,11.192mm) on Bottom Layer And Pad U2-28(32.35mm,11.827mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1397.525mil|Location2.Y=1408.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1397.525mil|Location2.Y=1408.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-3(38.45mm,10.557mm) on Bottom Layer And Pad U2-4(38.45mm,9.922mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1372.525mil|Location2.Y=1383.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1372.525mil|Location2.Y=1383.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-4(38.45mm,9.922mm) on Bottom Layer And Pad U2-5(38.45mm,9.287mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1347.525mil|Location2.Y=1358.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1347.525mil|Location2.Y=1358.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-5(38.45mm,9.287mm) on Bottom Layer And Pad U2-6(38.45mm,8.652mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1322.525mil|Location2.Y=1333.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1322.525mil|Location2.Y=1333.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-6(38.45mm,8.652mm) on Bottom Layer And Pad U2-7(38.45mm,8.017mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1297.525mil|Location2.Y=1308.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1297.525mil|Location2.Y=1308.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-7(38.45mm,8.017mm) on Bottom Layer And Pad U2-8(38.45mm,7.382mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1272.525mil|Location2.Y=1283.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2491.422mil|Location2.X=2502.672mil|Location1.Y=1272.525mil|Location2.Y=1283.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.082mm &lt; 0.254mm) Between Pad U2-8(38.45mm,7.382mm) on Bottom Layer And Pad U2-9(38.45mm,6.747mm) on Bottom Layer [Bottom Solder] Mask Sliver [0.082mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDB3HLZLPEFMERE2DD121LLMOBYJEM0PGTARL4NPKZIDL5ZG4KIJSP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4847.721mil|Location2.X=4858.971mil|Location1.Y=2384.04mil|Location2.Y=2395.29mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4847.721mil|Location2.X=4858.971mil|Location1.Y=2384.04mil|Location2.Y=2395.29mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C3-1(98.5mm,35.8mm) on Bottom Layer And Track (97.875mm,34.53mm)(97.875mm,35.17mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4897.629mil|Location2.X=4908.879mil|Location1.Y=2384.026mil|Location2.Y=2395.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4897.629mil|Location2.X=4908.879mil|Location1.Y=2384.026mil|Location2.Y=2395.276mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.107mm &lt; 0.254mm) Between Pad C3-1(98.5mm,35.8mm) on Bottom Layer And Track (99.125mm,34.53mm)(99.125mm,35.17mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.107mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4847.721mil|Location2.X=4858.971mil|Location1.Y=2348.804mil|Location2.Y=2360.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4847.721mil|Location2.X=4858.971mil|Location1.Y=2348.804mil|Location2.Y=2360.054mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C3-2(98.5mm,33.9mm) on Bottom Layer And Track (97.875mm,34.53mm)(97.875mm,35.17mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4896.934mil|Location2.X=4908.184mil|Location1.Y=2348.804mil|Location2.Y=2360.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4896.934mil|Location2.X=4908.184mil|Location1.Y=2348.804mil|Location2.Y=2360.054mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C3-2(98.5mm,33.9mm) on Bottom Layer And Track (99.125mm,34.53mm)(99.125mm,35.17mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2694.178mil|Location2.X=2705.428mil|Location1.Y=1346.639mil|Location2.Y=1357.889mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2694.178mil|Location2.X=2705.428mil|Location1.Y=1346.639mil|Location2.Y=1357.889mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C5-1(43.8mm,9.45mm) on Top Layer And Track (43.175mm,8.18mm)(43.175mm,8.82mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2744.086mil|Location2.X=2755.336mil|Location1.Y=1346.625mil|Location2.Y=1357.875mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2744.086mil|Location2.X=2755.336mil|Location1.Y=1346.625mil|Location2.Y=1357.875mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.107mm &lt; 0.254mm) Between Pad C5-1(43.8mm,9.45mm) on Top Layer And Track (44.425mm,8.18mm)(44.425mm,8.82mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.107mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2694.178mil|Location2.X=2705.428mil|Location1.Y=1311.403mil|Location2.Y=1322.653mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2694.178mil|Location2.X=2705.428mil|Location1.Y=1311.403mil|Location2.Y=1322.653mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C5-2(43.8mm,7.55mm) on Top Layer And Track (43.175mm,8.18mm)(43.175mm,8.82mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2743.391mil|Location2.X=2754.641mil|Location1.Y=1311.403mil|Location2.Y=1322.653mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2743.391mil|Location2.X=2754.641mil|Location1.Y=1311.403mil|Location2.Y=1322.653mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C5-2(43.8mm,7.55mm) on Top Layer And Track (44.425mm,8.18mm)(44.425mm,8.82mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4247.397mil|Location2.X=4258.647mil|Location1.Y=1070.359mil|Location2.Y=1081.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4247.397mil|Location2.X=4258.647mil|Location1.Y=1070.359mil|Location2.Y=1081.609mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C6-1(83.129mm,2.555mm) on Bottom Layer And Track (81.859mm,1.93mm)(82.499mm,1.93mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4247.383mil|Location2.X=4258.633mil|Location1.Y=1120.267mil|Location2.Y=1131.517mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4247.383mil|Location2.X=4258.633mil|Location1.Y=1120.267mil|Location2.Y=1131.517mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.107mm &lt; 0.254mm) Between Pad C6-1(83.129mm,2.555mm) on Bottom Layer And Track (81.859mm,3.18mm)(82.499mm,3.18mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.107mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4212.16mil|Location2.X=4223.41mil|Location1.Y=1070.359mil|Location2.Y=1081.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4212.16mil|Location2.X=4223.41mil|Location1.Y=1070.359mil|Location2.Y=1081.609mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C6-2(81.229mm,2.555mm) on Bottom Layer And Track (81.859mm,1.93mm)(82.499mm,1.93mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4212.16mil|Location2.X=4223.41mil|Location1.Y=1119.572mil|Location2.Y=1130.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4212.16mil|Location2.X=4223.41mil|Location1.Y=1119.572mil|Location2.Y=1130.822mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C6-2(81.229mm,2.555mm) on Bottom Layer And Track (81.859mm,3.18mm)(82.499mm,3.18mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=2228.455mil|Location2.Y=2239.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=2228.455mil|Location2.Y=2239.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H1-1(2mm,31.4mm) on Multi-Layer And Track (0.222mm,17.43mm)(0.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=2241.142mil|Location2.Y=2252.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=2241.142mil|Location2.Y=2252.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H1-1(2mm,31.4mm) on Multi-Layer And Track (3.778mm,17.43mm)(3.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=2128.455mil|Location2.Y=2139.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=2128.455mil|Location2.Y=2139.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H1-2(2mm,28.86mm) on Multi-Layer And Track (0.222mm,17.43mm)(0.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=2141.142mil|Location2.Y=2152.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=2141.142mil|Location2.Y=2152.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H1-2(2mm,28.86mm) on Multi-Layer And Track (3.778mm,17.43mm)(3.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=2028.455mil|Location2.Y=2039.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=2028.455mil|Location2.Y=2039.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H1-3(2mm,26.32mm) on Multi-Layer And Track (0.222mm,17.43mm)(0.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=2041.142mil|Location2.Y=2052.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=2041.142mil|Location2.Y=2052.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H1-3(2mm,26.32mm) on Multi-Layer And Track (3.778mm,17.43mm)(3.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=1928.455mil|Location2.Y=1939.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=1928.455mil|Location2.Y=1939.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H1-4(2mm,23.78mm) on Multi-Layer And Track (0.222mm,17.43mm)(0.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=1941.142mil|Location2.Y=1952.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=1941.142mil|Location2.Y=1952.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H1-4(2mm,23.78mm) on Multi-Layer And Track (3.778mm,17.43mm)(3.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=1828.455mil|Location2.Y=1839.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=1828.455mil|Location2.Y=1839.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H1-5(2mm,21.24mm) on Multi-Layer And Track (0.222mm,17.43mm)(0.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=1841.142mil|Location2.Y=1852.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=1841.142mil|Location2.Y=1852.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H1-5(2mm,21.24mm) on Multi-Layer And Track (3.778mm,17.43mm)(3.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=1728.455mil|Location2.Y=1739.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010.58mil|Location2.X=1021.83mil|Location1.Y=1728.455mil|Location2.Y=1739.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H1-6(2mm,18.7mm) on Multi-Layer And Track (0.222mm,17.43mm)(0.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=1741.142mil|Location2.Y=1752.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.88mil|Location2.X=1146.13mil|Location1.Y=1741.142mil|Location2.Y=1752.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H1-6(2mm,18.7mm) on Multi-Layer And Track (3.778mm,17.43mm)(3.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=2228.455mil|Location2.Y=2239.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=2228.455mil|Location2.Y=2239.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H2-1(98mm,31.4mm) on Multi-Layer And Track (96.222mm,17.43mm)(96.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=2241.142mil|Location2.Y=2252.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=2241.142mil|Location2.Y=2252.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H2-1(98mm,31.4mm) on Multi-Layer And Track (99.778mm,17.43mm)(99.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=2128.455mil|Location2.Y=2139.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=2128.455mil|Location2.Y=2139.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H2-2(98mm,28.86mm) on Multi-Layer And Track (96.222mm,17.43mm)(96.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=2141.142mil|Location2.Y=2152.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=2141.142mil|Location2.Y=2152.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H2-2(98mm,28.86mm) on Multi-Layer And Track (99.778mm,17.43mm)(99.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=2028.455mil|Location2.Y=2039.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=2028.455mil|Location2.Y=2039.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H2-3(98mm,26.32mm) on Multi-Layer And Track (96.222mm,17.43mm)(96.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=2041.142mil|Location2.Y=2052.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=2041.142mil|Location2.Y=2052.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H2-3(98mm,26.32mm) on Multi-Layer And Track (99.778mm,17.43mm)(99.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=1928.455mil|Location2.Y=1939.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=1928.455mil|Location2.Y=1939.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H2-4(98mm,23.78mm) on Multi-Layer And Track (96.222mm,17.43mm)(96.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=1941.142mil|Location2.Y=1952.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=1941.142mil|Location2.Y=1952.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H2-4(98mm,23.78mm) on Multi-Layer And Track (99.778mm,17.43mm)(99.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=1828.455mil|Location2.Y=1839.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=1828.455mil|Location2.Y=1839.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H2-5(98mm,21.24mm) on Multi-Layer And Track (96.222mm,17.43mm)(96.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=1841.142mil|Location2.Y=1852.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=1841.142mil|Location2.Y=1852.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H2-5(98mm,21.24mm) on Multi-Layer And Track (99.778mm,17.43mm)(99.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=1728.455mil|Location2.Y=1739.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4790.108mil|Location2.X=4801.358mil|Location1.Y=1728.455mil|Location2.Y=1739.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.179mm &lt; 0.254mm) Between Pad H2-6(98mm,18.7mm) on Multi-Layer And Track (96.222mm,17.43mm)(96.222mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.179mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=1741.142mil|Location2.Y=1752.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Dokumenti\Elektronika\Projekti\VFD URA 17 Display\VFD Ura Display.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4914.407mil|Location2.X=4925.657mil|Location1.Y=1741.142mil|Location2.Y=1752.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.218mm &lt; 0.254mm) Between Pad H2-6(98mm,18.7mm) on Multi-Layer And Track (99.778mm,17.43mm)(99.778mm,32.67mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.218mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

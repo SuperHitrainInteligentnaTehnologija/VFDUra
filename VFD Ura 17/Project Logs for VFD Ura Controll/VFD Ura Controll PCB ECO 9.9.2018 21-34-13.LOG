@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=RTS Pin=H1-3
+Removed Pin From Net: NetName=CTS Pin=H1-4
+Removed Pin From Net: NetName=DTR Pin=H1-5
+Removed Pin From Net: NetName=RTS Pin=H1-6
+Removed Pin From Net: NetName=GND Pin=H1-7
+Change Component Footprint: Designator=H1 Old Footprint=Letev7 New Footprint=Letev6
+Change Component Comment : Designator=H1 Old Comment=header7 New Comment=header6
+Added Pin To Net: NetName=CTS Pin=H1-3
+Added Pin To Net: NetName=DTR Pin=H1-4
+Added Pin To Net: NetName=RTS Pin=H1-5
+Added Pin To Net: NetName=GND Pin=H1-6

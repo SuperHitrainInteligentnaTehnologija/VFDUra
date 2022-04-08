@@ -1,0 +1,17 @@
+Added Pin To Net: NetName=1M6 Pin=D1-4
+Added Pin To Net: NetName=1M5 Pin=D1-5
+Added Pin To Net: NetName=2M7 Pin=D2-3
+Added Pin To Net: NetName=2M6 Pin=D2-4
+Added Pin To Net: NetName=2M5 Pin=D2-5
+Added Pin To Net: NetName=2M4 Pin=D2-6
+Added Pin To Net: NetName=1H7 Pin=D3-3
+Added Pin To Net: NetName=1H6 Pin=D3-4
+Added Pin To Net: NetName=1H5 Pin=D3-5
+Added Pin To Net: NetName=1H4 Pin=D3-6
+Added Pin To Net: NetName=2H7 Pin=D4-3
+Added Pin To Net: NetName=2H6 Pin=D4-4
+Added Pin To Net: NetName=2H5 Pin=D4-5
+Added Pin To Net: NetName=2H4 Pin=D4-6
+Added Pin To Net: NetName=NetH1_4 Pin=U1-11
+Added Pin To Net: NetName=NetH1_2 Pin=U1-19
+Added Room: Name=VFD Ura Display
